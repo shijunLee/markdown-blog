@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+{{template "layout/_includes/head.html" .}}
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+{{template "layout/_includes/nav.html" .}}
+{{template "layout/_includes/intro-header.html" .}}
+{{.LayoutContent}}
+{{template "layout/_includes/footer.html" .}}
+<!-- Image to hack wechat -->
+<img src="/static/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

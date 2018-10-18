@@ -1,0 +1,14 @@
+<section class="visible-md visible-lg">
+  <hr>
+  <h5><a href="'/about">ABOUT ME</a></h5>
+  <div class="short-about">
+    {{if ne .site.SidebarAvatar ""}}
+    <img src="{{ .site.SidebarAvatar}}" />
+    {{end}}
+    {{if ne .site.SidebarAboutDescription ""}}
+    <p>{{.site.SidebarAboutDescription}}</p>
+    {{end}}
+    <!-- SNS Link -->
+    {{template "layout/_includes/sns-links.html" .}}
+  </div>
+</section>

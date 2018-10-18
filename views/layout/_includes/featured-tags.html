@@ -1,0 +1,27 @@
+
+
+{{if .site.FeaturedTags}}
+<section>
+
+    <hr class="hidden-sm hidden-xs">
+
+    <h5><a href='{{printf .site.BaseUrl}}"/archive"  '>FEATURED TAGS</a></h5>
+    <div class="tags">
+
+   {{$count :=len .tags }}
+   {{if gt $count 0 }}
+        {{/*{% for tag in site.tags %}*/}}
+        {{ range $index , $tag:= .tags  }}
+             {{ if ge $tag.Count  $.site.FeaturedConditionSize }}
+                <a data-sort="{{  add $.site.PostCount  $tag.Count | addLeftPadZero  }}"
+                    href="{{  $.site.BaseUrl }}/archive/?tag={{ urlquery  $tag.TagName  }}"
+                    title="{{ $tag.TagName }}"
+                    rel="{{ $tag.Count }}">{{ $tag.TagName }}</a>
+        {{end}}
+    {{end}}
+   {{end}}
+
+        {{/*{{ tags | split:'</a>' | sort | join:'</a>' }}*/}}
+    </div>
+</section>
+{{end}}

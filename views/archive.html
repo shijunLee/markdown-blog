@@ -1,0 +1,61 @@
+{{template "layout/_includes/intro-header.html" .}}
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <!-- Tags (as filter) -->
+            <div id="tag_cloud" class="tags tags-sup js-tags">
+                <a class="tag-button--all focus" data-encode="" style="">
+                    Show All
+                    <sup>{{.site.PostCount}}</sup>
+                </a>
+            {{$count :=len .tags }}
+            {{if gt $count 0 }}
+            {{ range $index , $tag:= .tags  }}
+                <a data-sort="{{  add $.site.PostCount  $tag.Count | addLeftPadZero  }}"
+                   data-encode="{{ urlquery  $tag.TagName  }}"
+                   class="tag-button" title="{{ $tag.TagName }}" rel="{{ $tag.Count }}">
+                {{ $tag.TagName }}
+                    <sup>{{ $tag.Count }}</sup>
+                </a>
+            {{end}}
+            {{end}}
+            </div>
+            <a data-sort="0036" data-encode="Vim" class="tag-button" title="Vim" rel="1">
+
+                <!-- Article List -->
+            </a>
+            <div class="mini-post-list js-result">
+                <a data-sort="0036" data-encode="Vim" class="tag-button" title="Vim" rel="1"></a>
+            {{ $mapLen := len .tagOrders}}
+            {{if gt $mapLen 0}}
+            {{range $index,$value:=.tagOrders}}
+                <section>
+                    <a data-sort="0036" data-encode="Vim" class="tag-button" title="Vim" rel="1">
+                        <span class="fa listing-seperator">
+                            <span class="tag-text">{{ $value.Year }}</span>
+                        </span>
+                    </a>
+                {{range $postIndex,$post:=$value.Posts}}
+                    <div class="post-preview item" data-tags="{{ stringArrayToEscapeString $post.Tags }}">
+                        <a data-sort="0036" data-encode="{{ stringArrayToEscapeString $post.Tags }}" class="tag-button" title="{{ stringArrayToEscapeString $post.Tags  }}"
+                           rel="1">
+                        </a><a href="/post/{{ $post.Url }}">
+                        <h2 class="post-title">
+                        {{ $post.Title }}
+                        </h2>
+
+                        <h3 class="post-subtitle">
+                        {{ $post.SubTitle }}
+                        </h3>
+                    </a>
+                        <hr>
+                    </div>
+                {{end}}
+                </section>
+            {{end}}
+            {{end}}
+            </div>
+        </div>
+    </div>
+</div>

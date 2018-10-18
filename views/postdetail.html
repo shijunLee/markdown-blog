@@ -1,0 +1,11 @@
+<html>
+<title> love zhao-xiaoying's Blog! </title>
+<body>
+<h1></h1>
+<img src="/static/img/a.jpg">
+
+<a href="posts/{{.post.File}}"><h2>{{.post.Title}} ({{.post.Date}})</h2></a>
+<p>{{.post.Summary}}</p>
+<p>{{str2html .post.Body}}</p>
+</body>
+</html>

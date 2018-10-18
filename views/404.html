@@ -1,0 +1,124 @@
+
+
+
+<!-- Page Header -->
+
+{{ if eq .page.Layout  "post"}}
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('{{ .site.BaseUrl }}/{{if ne .page.HeaderImage "" }}{{ .page.HeaderImage }}{{else}}{{ .site.HeaderImage }}{{end}}');
+        background: {{ .page.HeaderBGCss }};
+    }
+
+    /*{% if page.header-mask %}*/
+	{{ if ge .page.HeaderMask 0}}
+    header.intro-header .header-mask {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0, 0, 0, {{ .page.HeaderMask }});
+    }
+	{{end}}
+</style>
+{{ if eq .page.HeaderStyle  "text" }}
+<header class="intro-header style-text">
+{{else}}
+<header class="intro-header">
+{{end}}
+    <div class="header-mask"></div>
+{{ if ne .page.HeaderImageCredit "" }}
+    <div class="header-img-credit">
+        Image by <a href="//{{ .page.HeaderImageCreditHref}}">{{.page.HeaderImageCredit}}</a>
+    </div>
+{{end}}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+					{{ if  ne .tags  nil }}
+					{{ range $index,$tag := .tags }}
+                        <a class="tag" href="{{ $.site.BaseUrl }}/archive/?tag={{ urlquery  $tag }}"
+                           title="{{ $tag }}">{{ $tag }}</a>
+					{{end}}
+					{{end}}
+                    </div>
+                    <h1>{{ .page.Title }}</h1>
+
+                    <h2 class="subheading">{{ .page.Subtitle }}</h2>
+                    <span class="meta">Posted by {{ if ne .page.author ""}}{{  .page.Author }}{{ else }}{{ .site.Title }}{{end}}
+                        on {{ .page.Date }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{{end}}
+
+{{ if  eq .page.Layout "keynote"}}
+    <style type="text/css">
+        header.intro-header {
+            height: 500px;
+            overflow: hidden;
+        }
+
+        header.intro-header .container {
+            visibility: hidden;
+        }
+
+        header iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+    <header class="intro-header">
+        <iframe src="{{.page.IFrame}}"></iframe>
+        <!-- keep for SEO -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <div class="tags">
+						{{ if  ne .tags  nil }}
+						{{ range $index,$tag := .tags }}
+                            <a class="tag" href="{{ $.site.BaseUrl }}/archive/?tag={{ urlquery  $tag }}"
+                               title="{{ $tag }}">{{ $tag }}</a>
+						{{end}}
+						{{end}}
+                        </div>
+                        <h1>{{ .page.Title }}</h1>
+
+                        <h2 class="subheading">{{ .page.Subtitle }}</h2>
+                        <span class="meta">Posted by {{if ne .page.author ""}}{{ .page.Author }}{{else}}{{ .site.title }}{{end}}
+                            on {{ .page.date }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{{end}}
+{{if eq .page.Layout "page" }}
+    <header class="intro-header"
+            style="background-image: url('{{ .site.BaseUrl }}/{{if ne .page.HeaderImage "" }}{{ .page.HeaderImage }}{{else}}{{ .site.HeaderImage }}{{end}}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				{{if .page.Short}}
+                <div class="site-heading" id="tag-heading">
+				{{else}}
+                <div class="site-heading">
+				{{end}}
+                    <h1>{{if ne .page.Title ""}}{{ .page.title }}{{else}}{{ .site.Title }}{{end}}</h1>
+                    <span class="subheading">{{ .page.Description }}</span>
+                </div>
+                </div>
+                </div>
+            </div>
+    </header>
+{{end}}
+
+<script>
+	document.body.classList.add('page-fullscreen');
+</script>

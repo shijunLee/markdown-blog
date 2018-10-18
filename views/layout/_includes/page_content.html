@@ -1,0 +1,21 @@
+{{range $index,$post:=.posts}}
+<div class="post-preview">
+    <a href="post/{{ $post.Url}}">
+        <h2 class="post-title">
+        {{$post.Title}}
+        </h2>
+
+        <h3 class="post-subtitle">
+        {{$post.SubTitle}}
+        </h3>
+
+        <div class="post-content-preview">
+        {{  $post.Summary |htmlunquote}}
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by {{ if ne $post.Author ""}}{{$post.Author}}{{else}} Shijun Lee {{end}} {{   $post.Date  }}
+    </p>
+</div>
+<hr>
+{{end}}

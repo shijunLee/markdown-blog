@@ -1,0 +1,10 @@
+{{if .site.Friends}}
+<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  {{/*{% for friend in site.friends %}*/}}
+   {{ range $index,$friend := .site.Friends}}
+  <li><a href="{{$friend.Href}}">{{$friend.Title}}</a></li>
+  {{end}}
+</ul>
+{{end}}
