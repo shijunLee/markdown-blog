@@ -12,4 +12,5 @@ func init() {
 	beego.Router("/post/:postName", &controllers.PostDetailController{})
 	beego.Router("/about", &controllers.AboutController{})
 	beego.Router("/archive", &controllers.TagsController{})
+	beego.ErrorController(&controllers.ErrorController{})
 }

@@ -155,7 +155,6 @@ func GetTags() []TagInfo {
 		}
 		if len(post.Tags) > 0 {
 			for _, tag := range post.Tags {
-				fmt.Println(tag)
 				tagsContain := false
 				for _, tagInfo := range tags {
 					if tagInfo.TagName == tag {

@@ -24,6 +24,10 @@ func (c *PostDetailController) Get() {
 	}
 	post := common.GetPost(fileName, false)
 
+	if post == nil || post.Title == "" {
+		c.Abort("404")
+	}
+
 	c.TplName = "post.html"
 	c.Layout = "layout/layout-post.html"
 	c.Data["layout"] = "post"

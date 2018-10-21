@@ -29,17 +29,18 @@ func (this *AboutController) Get() {
 	//description: "你来到了没有知识的荒原 :("
 	//header-img: "/static/img/404-bg.jpg"
 	//permalink: /404.html
-	post := new(common.Post)
-	post.Layout = "page"
-	post.Description = "你来到了没有知识的荒原 :("
-	post.HeaderImage = "static/img/404-bg.jpg"
-	this.Layout = "layout/layout.html"
-	this.TplName = "404.html"
-	this.Data["page"] = post
-	this.Data["layout"] = post.Layout
+	//post := new(common.Post)
+	//post.Layout = "page"
+	//post.Description = "你来到了没有知识的荒原 :("
+	//post.HeaderImage = "static/img/404-bg.jpg"
+	this.TplName = "about.tpl"
+	this.Layout = "layout/layout-post.html"
+	this.Data["page"] = common.GetAbout()
+	this.Data["layout"] = "page"
 	siteConfig := new(common.SiteConfig) // common.SiteConfig.GetConfig("config/_config.yaml")
 	absPath, _ := filepath.Abs("./config/_config.yml")
 	siteConfig.GetConfig(absPath)
 	this.Data["site"] = siteConfig
+	this.Data["tags"] = common.GetTags()
 	//this.LayoutSections["HtmlHeader"]="_includes/intro-header.html"
 }
